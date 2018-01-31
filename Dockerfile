@@ -9,17 +9,15 @@ RUN locale-gen en_US.UTF-8
 ENV LANG       en_US.UTF-8
 ENV LC_ALL     en_US.UTF-8
 
+RUN bash -c "apt-get update && \
+apt-get install -y \
+jags \
+&& rm -rf /var/lib/apt/lists/* \
+"
+
 USER jovyan
 
-RUN bash -c "pip install --no-cache-dir \
-virtualenv \
-ipyleaflet \
-bqplot \
-jupyter_contrib_nbextensions \
-jupyter_nbextensions_configurator && \
-jupyter nbextension enable --py --sys-prefix ipyleaflet && \
-jupyter nbextensions_configurator enable --user \
-"
+
 
 ADD requirements.txt /home/jovyan/work/requirements.txt
 RUN bash -c "pip install --no-cache-dir -r /home/jovyan/work/requirements.txt"
