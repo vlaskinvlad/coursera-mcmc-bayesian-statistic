@@ -17,7 +17,12 @@ vowpal-wabbit \
 "
 USER jovyan
 
-RUN bash -c "conda install -c https://conda.binstar.org/pymc pymc"
+RUN bash -c "conda install \ 
+-c https://conda.binstar.org/pymc pymc \
+"
 
 ADD requirements.txt /home/jovyan/work/requirements.txt
 RUN bash -c "pip install --no-cache-dir -r /home/jovyan/work/requirements.txt"
+
+# Installing R packages
+RUN bash -c "conda install r-essentials r-coda r-rjags r-gtools"
