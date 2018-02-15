@@ -1,6 +1,6 @@
 library("rjags")
 
-jags_model_compile = function(str_model_, data_, inits_, n_chains_ = 3, burnout = 1e3) { 
+jags_model_compile = function(str_model_, data_,  n_chains_ = 3, burnout = 1e3, inits_=NULL) { 
     m_ = jags.model(textConnection(str_model_), data = data_, inits = inits_, n.chains = n_chains_)
     update(m_, burnout)    
     m_

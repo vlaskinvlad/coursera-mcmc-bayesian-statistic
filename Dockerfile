@@ -24,5 +24,8 @@ RUN bash -c "conda install \
 ADD requirements.txt /home/jovyan/work/requirements.txt
 RUN bash -c "pip install --no-cache-dir -r /home/jovyan/work/requirements.txt"
 
+#Installing pymc3 packages
+RUN bash -c "conda install -y theano mkl-service pymc3"
+
 # Installing R packages
-RUN bash -c "conda install r-essentials r-coda r-rjags r-gtools"
+RUN bash -c "conda install -y r-essentials r-coda r-rjags r-gtools"
